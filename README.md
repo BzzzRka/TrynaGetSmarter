@@ -1,5 +1,5 @@
 # TrynaGetSmarter
-
+......
 Сайт с решениями задач из книг.
 
 🌐 **Сайт:** https://bzzzrka.github.io/TrynaGetSmarter/
