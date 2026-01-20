@@ -9,7 +9,7 @@ title: "Комбинаторика"
 <button class="toggle-btn" data-target="sol1">Показать решение</button>
 
 <div id="sol1" class="solution">
-**Решение:** C(10,3) = 120
+**Решение:** $$ C(10,3) = 120 $$
 </div>
 
 
@@ -23,5 +23,5 @@ title: "Комбинаторика"
 <div id="sol2" class="solution">
 **Решение:** 
 В слове 10 букв: М-2, А-3, Т-2, Е-1, И-1, К-1
-\\(\frac{10!}{2! \cdot 3! \cdot 2! \cdot 1! \cdot 1! \cdot 1!} = 151200\\)
+$$ \\(\frac{10!}{2! \cdot 3! \cdot 2! \cdot 1! \cdot 1! \cdot 1!} = 151200\\) $$
 </div>

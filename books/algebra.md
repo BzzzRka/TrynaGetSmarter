@@ -25,5 +25,5 @@ $$
 <button class="toggle-btn" data-target="sol2">Показать решение</button>
 
 <div id="sol2" class="solution">
-**Решение.** Это перестановки: \\(5! = 120\\).
+**Решение.** Это перестановки: $$ \\(5! = 120\\) $$.
 </div>
