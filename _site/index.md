@@ -9,5 +9,7 @@ title: Главная
 
 ## Книги
 
-1. [Алгебра](/TrynaGetSmarter/books/algebra.html)
-2. [Комбинаторика](/TrynaGetSmarter/books/combinatorics.html)
+1. [Алгебра](./books/algebra.md)
+2. [Комбинаторика](./books/combinatorics.md)
+
+
