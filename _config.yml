@@ -1,0 +1,12 @@
+﻿title: "Наша библиотека решений"
+description: "Сайт с решениями задач из книг"
+baseurl: ""
+url: ""
+theme: minima
+
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag

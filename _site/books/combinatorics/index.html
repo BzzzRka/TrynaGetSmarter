@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комбинаторика</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Главная</a> | 
+            <a href="/books/algebra.html">Алгебра</a> | 
+            <a href="/books/combinatorics.html">Комбинаторика</a>
+        </nav>
+        <h1><a href="/">Наша библиотека решений</a></h1>
+        <p>Сайт с решениями задач из книг</p>
+    </header>
+    
+    <main>
+        <h2 id="задача-1">Задача 1</h2>
+<p>Сколькими способами можно выбрать 3 книги из 10?</p>
+
+<p><button onclick="toggleSolution('sol1')">Показать решение</button></p>
+<div id="sol1" class="solution" style="display: none;">
+**Решение:** \(C(10,3) = \frac{10!}{3! \cdot 7!} = 120\)
+</div>
+
+<hr />
+
+<h2 id="задача-2">Задача 2</h2>
+<p>Сколько перестановок слова “МАТЕМАТИКА”?</p>
+
+<p><button onclick="toggleSolution('sol2')">Показать решение</button></p>
+<div id="sol2" class="solution" style="display: none;">
+**Решение:** 
+В слове 10 букв: М-2, А-3, Т-2, Е-1, И-1, К-1
+\[\frac{10!}{2! \cdot 3! \cdot 2! \cdot 1! \cdot 1! \cdot 1!} = 151200\]
+</div>
+
+    </main>
+    
+    <footer>
+        <p>Сделано с ❤️ для математики | 2026</p>
+    </footer>
+    
+    <script src="/js/toggle.js"></script>
+</body>
+</html>
