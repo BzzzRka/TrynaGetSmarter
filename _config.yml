@@ -2,10 +2,10 @@
 description: "Сайт с решениями задач из книг"
 baseurl: "/TrynaGetSmarter
 url: "https://bzzzrka.github.io"
-theme: minima
+#theme: minima
 
-markdown: kramdown
 permalink: pretty
+markdown: kramdown
 
 plugins:
   - jekyll-feed

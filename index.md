@@ -9,5 +9,5 @@ title: Главная
 
 ## Книги
 
-1. [Задачник по алгебре](./books/algebra)
-2. [Комбинаторика](./books/combinatorics)
+1. [Алгебра](./books/algebra.html)
+2. [Комбинаторика](./books/combinatorics.html)
