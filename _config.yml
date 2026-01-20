@@ -1,7 +1,7 @@
 ﻿title: "Наша библиотека решений"
 description: "Сайт с решениями задач из книг"
-baseurl: ""
-url: ""
+baseurl: "/TrynaGetSmarter
+url: "https://bzzzrka.github.io"
 theme: minima
 
 markdown: kramdown
