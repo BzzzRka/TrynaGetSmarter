@@ -18,6 +18,7 @@ title: "Комбинаторика"
 ## Задача 2
 Сколько перестановок слова "МАТЕМАТИКА"?
 
+<button class="toggle-btn" data-target="sol2">Показать решение</button>
 
 <div id="sol1" class="solution">
 **Решение:** 
