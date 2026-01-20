@@ -1,4 +1,11 @@
 ﻿document.addEventListener('DOMContentLoaded', function() {
+    // Автоматически прячем все решения при загрузке (только если не скрыты)
+    document.querySelectorAll('.solution').forEach(sol => {
+        if (sol.style.display !== 'block') {
+            sol.style.display = 'none';
+        }
+    });
+    
     // Добавляем обработчики ко всем кнопкам
     document.querySelectorAll('.toggle-btn').forEach(button => {
         const solutionId = button.getAttribute('data-target');
@@ -17,10 +24,5 @@
                 }
             });
         }
-    });
-    
-    // Автоматически прячем все решения при загрузке
-    document.querySelectorAll('.solution').forEach(sol => {
-        sol.style.display = 'none';
     });
 });

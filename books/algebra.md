@@ -8,9 +8,9 @@ title: "Задачник по алгебре"
 ### Задача 1
 Сколько существует различных шестизначных чисел, у которых сумма первых трех цифр равна сумме последних трех?
 
-<button onclick="toggleSolution('sol1')">Показать решение</button>
+<button class="toggle-btn" data-target="sol1">Показать решение</button>
 
-<div id="sol1" style="display: none;">
+<div id="sol1" class="solution">
 **Решение.** Используем метод звезд и черточек...
 </div>
 
@@ -19,8 +19,8 @@ title: "Задачник по алгебре"
 ### Задача 2
 Сколькими способами можно расставить 5 книг на полке?
 
-<button onclick="toggleSolution('sol2')">Показать решение</button>
+<button class="toggle-btn" data-target="sol2">Показать решение</button>
 
-<div id="sol2" style="display: none;">
+<div id="sol2" class="solution">
 **Решение.** Это перестановки: \\(5! = 120\\).
 </div>
