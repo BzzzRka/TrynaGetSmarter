@@ -6,6 +6,30 @@
     <title>{{ page.title | default: site.title }}</title>
     <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* Стили для кнопки переключателя */
+        #theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        #theme-toggle:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -26,8 +50,37 @@
         <p>Сделано с ❤️ для математики | {{ site.time | date: "%Y" }}</p>
     </footer>
     
+    <!-- Кнопка переключателя тем -->
+    <button id="theme-toggle">🎌 Аниме фон</button>
+    
     <script src="{{ '/js/toggle.js' | relative_url }}"></script>
-     <script src="toggle.js"></script>
+    
+    <script>
+        // Переключатель аниме-фона
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('theme-toggle');
+            
+            // Проверяем, была ли тема включена ранее
+            if (localStorage.getItem('animeTheme') === 'enabled') {
+                document.body.classList.add('temp-anime-bg');
+                toggleBtn.textContent = '📚 Обычный фон';
+            }
+            
+            // Обработчик клика
+            toggleBtn.addEventListener('click', function() {
+                // Переключаем класс
+                document.body.classList.toggle('temp-anime-bg');
+                
+                // Меняем текст кнопки
+                if (document.body.classList.contains('temp-anime-bg')) {
+                    this.textContent = '📚 Обычный фон';
+                    localStorage.setItem('animeTheme', 'enabled');
+                } else {
+                    this.textContent = '🎌 Аниме фон';
+                    localStorage.setItem('animeTheme', 'disabled');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
