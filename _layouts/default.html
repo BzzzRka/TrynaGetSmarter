@@ -40,6 +40,52 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
+        
+        /* Стили для кнопки аниме-цитат */
+        #anime-quote-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6b8b, #9d50bb);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 107, 139, 0.4);
+            transition: all 0.3s;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        #anime-quote-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.6);
+            background: linear-gradient(45deg, #ff4757, #8e44ad);
+        }
+        
+        #anime-quote-btn.quote-playing {
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+        
+        /* Контейнер для информации о цитате */
+        #quote-info {
+            text-align: center;
+            margin: 10px auto;
+            padding: 10px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
+            max-width: 500px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -90,6 +136,120 @@
                     this.textContent = '🎌 Аниме фон';
                     localStorage.setItem('animeTheme', 'disabled');
                 }
+            });
+        });
+    </script>
+    
+    <script>
+        // Аниме-цитаты (добавлен после основного скрипта)
+        document.addEventListener('DOMContentLoaded', function() {
+            const quoteBtn = document.getElementById('anime-quote-btn');
+            if (!quoteBtn) return;
+            
+            // Список аудиофайлов (добавьте свои файлы в assets/sounds/)
+            const quotes = [
+                { 
+                    file: '/TrynaGetSmarter/assets/sounds/quote1.mp3',
+                    title: 'Тот, кто имеет способности...',
+                    anime: 'Classroom of the Elite'
+                },
+                { 
+                    file: '/TrynaGetSmarter/assets/sounds/quote2.mp3', 
+                    title: 'Что такое истина?',
+                    anime: 'Naruto'
+                },
+                { 
+                    file: '/TrynaGetSmarter/assets/sounds/quote3.mp3',
+                    title: 'Огромный гриб',
+                    anime: 'Avatar: The Last Airbender'
+                }
+            ];
+            
+            // Создаем контейнер для информации, если его нет
+            let infoDiv = document.getElementById('quote-info');
+            if (!infoDiv) {
+                infoDiv = document.createElement('div');
+                infoDiv.id = 'quote-info';
+                infoDiv.style.cssText = `
+                    text-align: center;
+                    margin: 10px auto;
+                    padding: 10px;
+                    background: rgba(52, 152, 219, 0.1);
+                    border-radius: 10px;
+                    max-width: 500px;
+                    display: none;
+                `;
+                quoteBtn.parentNode.insertBefore(infoDiv, quoteBtn.nextSibling);
+            }
+            
+            let currentAudio = null;
+            
+            quoteBtn.addEventListener('click', function() {
+                // Если уже играет - останавливаем
+                if (currentAudio && !currentAudio.paused) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    quoteBtn.classList.remove('quote-playing');
+                    quoteBtn.textContent = '🎤 Случайная аниме-цитата';
+                    infoDiv.innerHTML += '<br><em>⏹ Остановлено</em>';
+                    setTimeout(() => {
+                        infoDiv.style.display = 'none';
+                    }, 2000);
+                    currentAudio = null;
+                    return;
+                }
+                
+                // Останавливаем предыдущее воспроизведение
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+                
+                // Выбираем случайную цитату
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                
+                // Обновляем информацию
+                infoDiv.innerHTML = `
+                    <strong>${randomQuote.title}</strong><br>
+                    <small>${randomQuote.anime}</small>
+                `;
+                infoDiv.style.display = 'block';
+                
+                // Создаем аудио элемент
+                currentAudio = new Audio(randomQuote.file);
+                quoteBtn.classList.add('quote-playing');
+                quoteBtn.textContent = '⏸ Остановить';
+                
+                // События аудио
+                currentAudio.addEventListener('ended', function() {
+                    quoteBtn.classList.remove('quote-playing');
+                    quoteBtn.textContent = '🎤 Случайная аниме-цитата';
+                    setTimeout(() => {
+                        infoDiv.style.display = 'none';
+                    }, 3000);
+                    currentAudio = null;
+                });
+                
+                currentAudio.addEventListener('error', function() {
+                    quoteBtn.classList.remove('quote-playing');
+                    quoteBtn.textContent = '❌ Ошибка';
+                    infoDiv.innerHTML = '<em>Файл не найден. Добавьте MP3 файлы в assets/sounds/</em>';
+                    setTimeout(() => {
+                        quoteBtn.textContent = '🎤 Случайная аниме-цитата';
+                        infoDiv.style.display = 'none';
+                    }, 3000);
+                });
+                
+                // Запускаем воспроизведение
+                currentAudio.play().catch(e => {
+                    console.log('Автовоспроизведение заблокировано. Кликните на странице сначала.');
+                    quoteBtn.textContent = '👆 Кликните здесь сначала';
+                    infoDiv.innerHTML = '<em>Кликните на странице для разрешения звука</em>';
+                    setTimeout(() => {
+                        quoteBtn.textContent = '🎤 Случайная аниме-цитата';
+                        infoDiv.style.display = 'none';
+                    }, 2000);
+                });
             });
         });
     </script>
